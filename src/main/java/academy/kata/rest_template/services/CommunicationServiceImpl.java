@@ -14,7 +14,6 @@ import java.util.Objects;
 public class CommunicationServiceImpl implements CommunicationService {
 
     private static final String URL = "http://94.198.50.185:7081/api/users";
-
     private final RestTemplate restTemplate;
     private final HttpHeaders httpHeaders;
 
