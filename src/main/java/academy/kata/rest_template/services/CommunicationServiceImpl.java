@@ -3,7 +3,6 @@ package academy.kata.rest_template.services;
 import academy.kata.rest_template.models.User;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
