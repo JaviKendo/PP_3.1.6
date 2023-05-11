@@ -1,0 +1,49 @@
+GET http://94.198.50.185:7081/api/users/
+Accept: application/json
+
+<> 2023-05-02T221946.200.json
+<> 2023-05-02T221711.200.json
+<> 2023-05-02T221601.200.json
+
+###
+
+POST http://94.198.50.185:7081/api/users
+Content-Type: application/json
+
+{
+  "id": 3,
+  "name": "James",
+  "lastName": "Brown",
+  "age": 25
+}
+
+<> 2023-05-02T221947.200.txt
+<> 2023-05-02T221711.200.txt
+<> 2023-05-02T221602.400.json
+
+###
+
+PUT http://94.198.50.185:7081/api/users
+Content-Type: application/json
+
+{
+  "id": 3,
+  "name": "Thomas",
+  "lastName": "Shelby",
+  "age": 30
+}
+
+<> 2023-05-02T221947-1.200.txt
+<> 2023-05-02T221711.405.json
+<> 2023-05-02T221602.405.json
+
+###
+
+DELETE http://94.198.50.185:7081/api/users/3
+Content-Type: application/json
+
+<> 2023-05-02T221947-2.200.txt
+<> 2023-05-02T221711-1.200.txt
+<> 2023-05-02T221602.400.txt
+
+###
