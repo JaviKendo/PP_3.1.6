@@ -23,7 +23,7 @@ public class CommunicationServiceImpl implements CommunicationService {
     }
 
     @Override
-    public void getAllUsers() {
+    public List<User> getAllUsers() {
         ResponseEntity<List<User>> responseEntity = restTemplate.exchange(
                 URL, HttpMethod.GET, null, new ParameterizedTypeReference<List<User>>() {});
 
@@ -32,6 +32,8 @@ public class CommunicationServiceImpl implements CommunicationService {
 
         httpHeaders.set("Cookie", sessionId);
         httpHeaders.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+
+        return responseEntity.getBody();
     }
 
     @Override
