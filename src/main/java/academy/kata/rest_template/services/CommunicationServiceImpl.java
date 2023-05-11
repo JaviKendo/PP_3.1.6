@@ -25,17 +25,14 @@ public class CommunicationServiceImpl implements CommunicationService {
 
     @Override
     public void getAllUsers() {
-        ResponseEntity<List<User>> responseEntity = restTemplate.exchange(URL, HttpMethod.GET, null,
-                new ParameterizedTypeReference<List<User>>() {});
+        ResponseEntity<List<User>> responseEntity = restTemplate.exchange(
+                URL, HttpMethod.GET, null, new ParameterizedTypeReference<List<User>>() {});
 
         httpHeaders.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-        HttpEntity<String> entity = new HttpEntity<>(httpHeaders);
 
         String setCookie = Objects.requireNonNull(responseEntity.getHeaders().get("Set-Cookie")).get(0);
         String sessionId = setCookie.substring(0, setCookie.indexOf(';'));
         httpHeaders.set("Cookie", sessionId);
-
-        restTemplate.exchange(URL, HttpMethod.GET, entity, String.class).getBody();
     }
 
     @Override
