@@ -20,6 +20,7 @@ public class HelloController {
     @GetMapping(value = "/")
     public String printWelcome(ModelMap model) {
         List<String> messages = new ArrayList<>();
+
         messages.add("Full result: " + result.getResult());
         messages.add("ResultServiceImpl of the first part: " + result.getResultOfTheFirstPart());
         messages.add("ResultServiceImpl of the second part: " + result.getResultOfTheSecondPart());
