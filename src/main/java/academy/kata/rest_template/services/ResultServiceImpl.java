@@ -3,6 +3,8 @@ package academy.kata.rest_template.services;
 import academy.kata.rest_template.models.User;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ResultServiceImpl implements ResultService {
 
@@ -18,7 +20,10 @@ public class ResultServiceImpl implements ResultService {
 
     @Override
     public String getResult() {
-        communication.getAllUsers();
+        List<User> users = communication.getAllUsers();
+        for (User user : users) {
+            System.out.println(user);
+        }
 
         User user = new User(3L, "James", "Brown", (byte) 25);
         resultOfTheFirstPart = communication.addUser(user);
