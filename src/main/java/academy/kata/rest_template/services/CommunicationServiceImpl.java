@@ -27,11 +27,7 @@ public class CommunicationServiceImpl implements CommunicationService {
         ResponseEntity<List<User>> responseEntity = restTemplate.exchange(
                 URL, HttpMethod.GET, null, new ParameterizedTypeReference<List<User>>() {});
 
-        String setCookie = Objects.requireNonNull(responseEntity.getHeaders().get("Set-Cookie")).get(0);
-        String sessionId = setCookie.substring(0, setCookie.indexOf(';'));
-
-        httpHeaders.set("Cookie", sessionId);
-        httpHeaders.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+        this.changeHttpHeaders(this.getSessionId(responseEntity));
 
         return responseEntity.getBody();
     }
@@ -52,6 +48,19 @@ public class CommunicationServiceImpl implements CommunicationService {
     public String deleteUserById(Long id) {
         return restTemplate.exchange(
                 URL + "/" + id, HttpMethod.DELETE, new HttpEntity<>(httpHeaders), String.class).getBody();
+    }
+
+    @Override
+    public String getSessionId(ResponseEntity<List<User>> responseEntity) {
+        String setCookie = Objects.requireNonNull(responseEntity.getHeaders().get("Set-Cookie")).get(0);
+
+        return setCookie.substring(0, setCookie.indexOf(';'));
+    }
+
+    @Override
+    public void changeHttpHeaders(String sessionId) {
+        httpHeaders.set("Cookie", sessionId);
+        httpHeaders.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
     }
 
 }
