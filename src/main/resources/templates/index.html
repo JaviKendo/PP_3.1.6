@@ -11,7 +11,7 @@
 
 <div>
     <th:block th:each="msg, state : ${messages}">
-        <div style="color: SpringGreen" th:if="${state.index} == 0">
+        <div style="color: Lime" th:if="${state.index} == 0">
             <h1 th:text="${msg}" th:align="center"></h1>
         </div>
         <div style="color: black" th:if="${state.index} != 0">
