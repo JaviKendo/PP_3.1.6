@@ -28,11 +28,11 @@ public class CommunicationServiceImpl implements CommunicationService {
         ResponseEntity<List<User>> responseEntity = restTemplate.exchange(
                 URL, HttpMethod.GET, null, new ParameterizedTypeReference<List<User>>() {});
 
-        httpHeaders.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-
         String setCookie = Objects.requireNonNull(responseEntity.getHeaders().get("Set-Cookie")).get(0);
         String sessionId = setCookie.substring(0, setCookie.indexOf(';'));
+
         httpHeaders.set("Cookie", sessionId);
+        httpHeaders.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
     }
 
     @Override
